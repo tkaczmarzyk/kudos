@@ -29,9 +29,13 @@ object Global extends GlobalSettings {
       
       val participants = (for (p <- People) yield p).list
 
-      val kudoses = 
+      var kudoses = 
         for (p <- participants)
           yield Kudos(None, "uczestnictwo w hackhatonie #1", p.id.get)
+
+      val pw = participants.find(_.name.startsWith("Piotr")).get
+      
+      kudoses ::= Kudos(None, "za rozpykanie json mapperów ;)", pw.id.get) 
       
       Kudoses.insertAll(kudoses: _*)
     }
