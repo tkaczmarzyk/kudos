@@ -5,14 +5,14 @@ import scala.slick.driver.H2Driver.simple.Database.threadLocalSession
 import play.api.mvc.Action
 import play.api.mvc.Controller
 import models.{Bar, Bars}
-import global.Global
+import global.Global._
 import play.api.libs.json.Json
 
 
 object BarController extends Controller {
 
   def list = Action {
-    val allBars = Global.database.withSession {
+    val allBars = database.withSession {
       val bars = for (b <- Bars) yield b
       bars.list
     }
@@ -25,7 +25,7 @@ object BarController extends Controller {
     
     val barName = (json \ "name").as[String]
     
-    Global.database withSession {
+    database withSession {
       Bars.insert(Bar(None, barName))
     }
     
