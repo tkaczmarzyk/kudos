@@ -1,0 +1,17 @@
+[
+	{
+		"id":1,
+		"name":"first kudos",
+		"targetId":"1"
+	},
+	{
+		"id":2,
+		"name":"second kudos",
+		"targetId":"2"
+	},
+	{
+		"id":3,
+		"name":"third kudos",
+		"targetId":"1"
+	}
+]
