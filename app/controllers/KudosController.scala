@@ -19,11 +19,7 @@ object KudosController extends Controller {
       (for (k <- Kudoses; p <- k.target) yield (k, p)).list
     }
     
-    for ((k, p) <- kudos) {
-//      Json.toJson(o)
-    }
-    
-    Ok("dupa")
+    Ok(Json.toJson(kudos))
   }
   
   def findById(id: Int) = Action {
