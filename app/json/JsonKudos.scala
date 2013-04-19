@@ -12,6 +12,8 @@ import models.Person
 import play.api.libs.json.JsString
 import play.api.libs.json.Reads
 import play.api.libs.json.JsResult
+import org.codehaus.jackson.schema.JsonSchema
+import play.api.libs.json.JsSuccess
 
 object JsonKudos {
   implicit object KudosFormat extends Writes[(Kudos, Person)] with Reads[Kudos] {
@@ -27,11 +29,11 @@ object JsonKudos {
             }
         )
         
-        def reads(json: JsValue): Kudos = Kudos(
+        def reads(json: JsValue):JsResult[Kudos] = JsSuccess(Kudos(
         		(json \ "id").as[Option[Int]],
         		(json \ "name").as[String],
         		(json \ "targetId").as[Int],
         		(json \ "text").as[String]
-        )
+        ))
   }
 }
