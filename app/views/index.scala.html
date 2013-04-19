@@ -279,21 +279,21 @@
           
           <form class="form-horizontal" action="@routes.KudosController.submit" method="post">
           	<div class="control-group">
-				<label class="control-label" for="inputEmail">For what</label>
+				<label class="control-label" for="forWhat">For what</label>
 				<div class="controls">
-					<input type="text" id="forWhat" />
+					<input type="text" id="forWhat" name="forWhat" />
 				</div>
 			</div>
 			<div class="control-group">
-				<label class="control-label" for="inputPassword">For whom</label>
+				<label class="control-label" for="">For whom</label>
 				<div class="controls">
 					<select></select>
 				</div>
 			</div>
 			<div class="control-group">
-				<label class="control-label" for="inputPassword">Details</label>
+				<label class="control-label" for="description">Details</label>
 				<div class="controls">
-					<textarea id="description"></textarea>
+					<textarea id="description" name="description"></textarea>
 				</div>
 			</div>
 			<div class="control-group">

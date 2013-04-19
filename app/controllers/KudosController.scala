@@ -15,6 +15,7 @@ import play.api.data.Forms._
 import views.html.helper.FieldConstructor._
 import play.api.data.Form
 import models.Kudos
+import models.Kudos
 
 
 object KudosController extends Controller {
@@ -43,8 +44,19 @@ object KudosController extends Controller {
 //  	Kudoses.insert(kudos)
 //  }
   
-  def submit = Action {
-    Ok("dupa")
+  def submit = Action {request => {
+      val form = request.body.asFormUrlEncoded.get
+      
+      val now = new java.sql.Date(System.currentTimeMillis())
+      
+	  val k = Kudos(id=None, name=form("forWhat")(0), text=form("description")(0), targetId=Integer.parseInt(form("targetId")(0)), creationDate=now)
+	  
+	  database withSession {
+        Kudoses.insert(k)
+      }
+	  
+	  Redirect(routes.Application.index)
+    }
   }
   
   def showForm = Action {
