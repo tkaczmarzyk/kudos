@@ -2,24 +2,28 @@
 	{
 		"id":1,
 		"name":"first kudos",
+		"text":"alkajsdf lja sdlkfj aldskjf a;ldskjf laskjdf;laksjdf",
 		"targetId":"1",
 		"photoUrl":"http://cohesiva.com/images/people_thumbs/michal_alt.jpg"
 	},
 	{
 		"id":2,
 		"name":"second kudos",
+		"text":"alkajsdf lja sdlkfj aldskjf a;ldskjf laskjdf;laksjdf",
 		"targetId":"2",
 		"photoUrl":"http://cohesiva.com/images/people_thumbs/piotrekw_alt.jpg"
 	},
 	{
 		"id":3,
 		"name":"third kudos",
+		"text":"alkajsdf lja sdlkfj aldskjf a;ldskjf laskjdf;laksjdf",
 		"targetId":"1",
 		"photoUrl":"http://cohesiva.com/images/people_thumbs/tomekk_alt.jpg"
 	},
 	{
 		"id":4,
 		"name":"fourth kudos",
+		"text":"alkajsdf lja sdlkfj aldskjf a;ldskjf laskjdf;laksjdf",
 		"targetId":"1",
 		"photoUrl":"http://cohesiva.com/images/people_thumbs/blazej_alt.jpg"
 	}
