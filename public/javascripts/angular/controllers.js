@@ -3,7 +3,7 @@
 /* Controllers */
 
 function KudosListCtrl($scope, $http) {
-  $http.get('/assets/mock/kudos/kudosList.json').success(function(data) {
+  $http.get('/kudos').success(function(data) {
     $scope.kudoses = data;
   });
 
