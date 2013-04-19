@@ -3,8 +3,7 @@ package models
 import scala.slick.driver.H2Driver.simple._
 
 
-case class Kudos(id: Option[Int] = None, name: String, targetId: Int)
-
+case class Kudos(id: Option[Int] = None, name: String, targetId: Int, text: String)
 
 object Kudoses extends Table[Kudos]("kudos") {
   
@@ -16,6 +15,8 @@ object Kudoses extends Table[Kudos]("kudos") {
   
   def target = foreignKey("target_fk", targetId, People)(_.id)
   
+  def text = column[String]("text")
   
-  def * = id.? ~ name ~ targetId <>(Kudos, Kudos.unapply _)
+  
+  def * = id.? ~ name ~ targetId ~ text <>(Kudos, Kudos.unapply _)
 }

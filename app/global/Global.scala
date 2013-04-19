@@ -22,16 +22,20 @@ object Global extends GlobalSettings {
     database withSession {
       (Bars.ddl ++ Kudoses.ddl ++ People.ddl).create
       
-      People.insertAll(Person(None, "Tomasz Kaczmarzyk"),
-          Person(None, "Michał Jankowski"),
-          Person(None, "Piotr Wyczółkowski"),
-          Person(None, "Błażej Karmelita"))
+      People.insertAll(Person(None, "Tomasz Kaczmarzyk", "http://cohesiva.com/images/people_thumbs/tomekk_alt.jpg"),
+          Person(None, "Michał Jankowski", "http://cohesiva.com/images/people_thumbs/michal_alt.jpg"),
+          Person(None, "Piotr Wyczółkowski", "http://cohesiva.com/images/people_thumbs/piotrekw_alt.jpg"),
+          Person(None, "Błażej Karmelita", "http://cohesiva.com/images/people_thumbs/blazej_alt.jpg"))
       
       val participants = (for (p <- People) yield p).list
 
-      val kudoses = 
+      var kudoses = 
         for (p <- participants)
-          yield Kudos(None, "uczestnictwo w hackhatonie #1", p.id.get)
+          yield Kudos(None, "uczestnictwo w hackhatonie #1", p.id.get, "za wybranie klawiatury zamiast piwa w piątek wieczorem!")
+
+      val pw = participants.find(_.name.startsWith("Piotr")).get
+      
+      kudoses ::= Kudos(None, "za rozpykanie json mapperów ;)", pw.id.get, "po prostu usiadł i wykonał zadanie -- a kłód pod nogami było wiele :)") 
       
       Kudoses.insertAll(kudoses: _*)
     }

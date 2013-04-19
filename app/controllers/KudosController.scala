@@ -7,20 +7,19 @@ import play.api.mvc.Controller
 import models.{Kudos, Kudoses}
 import global.Global._
 import play.api.libs.json.Json
+import json.JsonKudos.KudosFormat
 import views.html.defaultpages.badRequest
+import models.Person
 
 
 object KudosController extends Controller {
   
   def list = Action {
-    val kudos = database.withSession {
-      (for (k <- Kudoses) yield k).list
+    val kudos: List[(Kudos, Person)] = database.withSession {
+      (for (k <- Kudoses; p <- k.target) yield (k, p)).list
     }
     
-//    Ok(kudos.foldLeft(Json.obj())(
-//        (acc, kudos) => acc.obj("bl" -> "df")))
-    
-    Ok(Json.obj("test" -> kudos(0).name))
+    Ok(Json.toJson(kudos))
   }
   
   def findById(id: Int) = Action {
@@ -33,4 +32,9 @@ object KudosController extends Controller {
       case None => NotFound("no such element")
     }
   }
+  
+//  def createKudos = Action { request =>
+//  	val kudos = Json.fromJson(request.body.asJson.get).get
+//  	Kudoses.insert(kudos)
+//  }
 }
