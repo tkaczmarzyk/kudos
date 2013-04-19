@@ -20,7 +20,10 @@
 			<h1>Our KUDOSes :)</h1>
 			<ul>
           <li ng-repeat="kudos in kudoses">
-            {{kudos.name}}
+			<div>id:{{kudos.id}} </div>
+			<div> name:{{kudos.name}}</div>
+			<div> targetId:{{kudos.targetId}}<div>
+			<div><img src={{kudos.photoUrl}}></div>
           </li>
         </ul>
 		</div>
