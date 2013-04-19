@@ -9,9 +9,11 @@ import play.api.libs.json.Format
 import play.api.libs.json.JsString
 import play.api.libs.json.JsNumber
 import models.Person
+import play.api.libs.json.Reads
+import play.api.libs.json.JsResult
 
 object JsonKudos {
-  implicit object KudosFormat extends Writes[(Kudos, Person)] {
+  implicit object KudosFormat extends Writes[(Kudos, Person)] with Reads[Kudos] {
 
         def writes(tuple: (Kudos, Person)) = JsObject(
             tuple match {
@@ -21,6 +23,12 @@ object JsonKudos {
                 "target" -> JsString(p.name)
               )
             }
+        )
+        
+        def reads(json: JsValue): Kudos = Kudos(
+        		(json \ "id").as[Option[Int]],
+        		(json \ "name").as[String],
+        		(json \ "targetId").as[Int]
         )
   }
 }
