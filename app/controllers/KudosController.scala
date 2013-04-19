@@ -10,6 +10,11 @@ import play.api.libs.json.Json
 import json.JsonKudos.KudosFormat
 import views.html.defaultpages.badRequest
 import models.Person
+import play.api.data._
+import play.api.data.Forms._
+import views.html.helper.FieldConstructor._
+import play.api.data.Form
+import models.Kudos
 
 
 object KudosController extends Controller {
@@ -37,4 +42,12 @@ object KudosController extends Controller {
 //  	val kudos = Json.fromJson(request.body.asJson.get).get
 //  	Kudoses.insert(kudos)
 //  }
+  
+  def submit = Action {
+    Ok("dupa")
+  }
+  
+  def showForm = Action {
+    Ok(views.html.newKudos())
+  }
 }

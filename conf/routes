@@ -9,7 +9,10 @@ GET		/bars						controllers.BarController.list
 POST	/bars						controllers.BarController.newBar
 
 GET		/kudos						controllers.KudosController.list
+POST	/kudos						controllers.KudosController.submit
+GET		/kudos/new					controllers.KudosController.showForm
 GET		/kudos/:id					controllers.KudosController.findById(id: Int)
+
 
 GET		/people						controllers.PeopleController.list
 

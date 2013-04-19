@@ -277,6 +277,42 @@
       <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
     </div><!-- /.carousel -->
 
+	<div class="container marketing">
+
+      <!-- Three columns of text below the carousel -->
+      <div class="row">
+        <div class="span8">
+          <img class="img-circle" data-src="holder.js/140x140">
+          <h2>New Kudos</h2>
+          
+          <form class="form-horizontal" action="@routes.KudosController.submit" method="post">
+          	<div class="control-group">
+				<label class="control-label" for="inputEmail">For what</label>
+				<div class="controls">
+					<input type="text" id="forWhat" />
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="inputPassword">For whom</label>
+				<div class="controls">
+					<select></select>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="inputPassword">Details</label>
+				<div class="controls">
+					<textarea id="description"></textarea>
+				</div>
+			</div>
+			<div class="control-group">
+				<div class="controls">
+					<button type="submit" class="btn btn-primary">kudos it!</button>
+				</div>
+			</div>
+		  </form>
+        </div><!-- /.span4 -->
+    </div>
+
     </div><!-- /.container -->
 
 
