@@ -5,7 +5,6 @@ import scala.slick.driver.H2Driver.simple._
 
 case class Kudos(id: Option[Int] = None, name: String, targetId: Int, text: String)
 
-
 object Kudoses extends Table[Kudos]("kudos") {
   
   def id = column[Int]("id", O.PrimaryKey, O.AutoInc)
