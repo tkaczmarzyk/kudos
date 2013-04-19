@@ -74,6 +74,7 @@
     /* Carousel base class */
     .carousel {
       margin-bottom: 60px;
+	  background-color: grey;
     }
 
     .carousel .container {
@@ -95,6 +96,15 @@
       height: 500px;
     }
     .carousel img {
+	  position: static;
+      max-width: 550px;
+      padding: 0 20px;
+      margin-top: 20px;
+	  margin-bottom: 20px;
+	  height:150px;
+	  width:150px;
+	}
+	.carousel1 img {
       position: absolute;
       top: 0;
       left: 0;
@@ -109,17 +119,33 @@
       padding: 0 20px;
       margin-top: 200px;
     }
-    .carousel-caption h1,
-    .carousel-caption .lead {
+
+	.carousel-caption-wide {
+      background-color: transparent;
+      position: static;
+      max-width: 850px;
+      padding: 0 20px;
+      margin-top: 200px;
+    }
+
+	.carousel-caption-wide h1,
+    .carousel-caption-wide .lead,   
+	.carousel-caption h1,
+    .carousel-caption .lead,
+    .carousel-caption .name {
       margin: 0;
       line-height: 1.25;
       color: #fff;
-      text-shadow: 0 1px 1px rgba(0,0,0,.4);
+      text-shadow: 0 2px 2px rgba(0,0,0,.4);
     }
+	.carousel-caption-wide .btn,
     .carousel-caption .btn {
       margin-top: 10px;
     }
 
+	.name {
+		padding-left: 20px;
+	}
 
 
     /* MARKETING CONTENT
@@ -190,17 +216,11 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="brand" href="#">First Hackaton</a>
+            <a class="brand" href="#">Pierwszy Cohesiva Hackaton</a>
             <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
             <div class="nav-collapse collapse">
               <ul class="nav">
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Roll <b class="caret"></b></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="#">Roll forward</a></li>
-                    <li><a href="#">Roll backward</a></li>
-                  </ul>
-                </li>
+                
               </ul>
             </div><!--/.nav-collapse -->
           </div><!-- /.navbar-inner -->
@@ -215,33 +235,46 @@
     ================================================== -->
     <div id="myCarousel" class="carousel slide" ng-controller="KudosListCtrl">
       <div class="carousel-inner">
-		<div class="item" ng-repeat="kudos in kudoses">
-          <img src="{{kudos.target.photoUrl}}" alt="" >
-          <div class="container">
-            <div class="carousel-caption">
-			  
-              <h1>{{kudos.name}}</h1>
-              <p class="lead">{{kudos.text}}</p>
-            </div>
+		
+		<div class="item active">
+          <div class="container">    
+			  <div class="row">
+			  	<div class="span12">
+					<div class="carousel-caption-wide">
+					  <h1>Pierwszy Cohesiva Hackaton</h1>
+			          <p class="lead">Nagrody ...</p>
+					</div> 	
+				</div>
+			  </div>            
           </div>
-        </div>		
+        </div>
+
+		<div class="item " ng-repeat="kudos in kudoses">
+          <div class="container">    
+			  <div class="row">
+			  	<div class="span6">
+					<div class="carousel-caption">
+					  <h1>KUDOS<br />
+						{{kudos.name}}
+					  </h1>
+			          <p class="lead">{{kudos.text}}</p>
+					</div> 	
+				</div>
+				<div class="span6">
+					<div class="carousel-caption">
+					  	<img src="{{kudos.target.photoUrl}}" alt="" >
+						<div class="name">{{kudos.target.name}}</div>
+					</div>
+				</div>
+			  </div>            
+          </div>
+        </div>
 
 		
       </div>
       <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
       <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
     </div><!-- /.carousel -->
-
-
-
-
-    
-
-      <!-- FOOTER -->
-      <footer>
-        <p class="pull-right"><a href="#">Back to top</a></p>
-        <p>&copy; 2013 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-      </footer>
 
     </div><!-- /.container -->
 
@@ -271,7 +304,7 @@
       !function ($) {
         $(function(){
           // carousel demo
-          $('#myCarousel').carousel()
+          $('#myCarousel').carousel({interval:4000});
         })
       }(window.jQuery)
     </script>
