@@ -9,16 +9,21 @@ import global.Global._
 import play.api.libs.json.Json
 import json.JsonKudos.KudosFormat
 import views.html.defaultpages.badRequest
+import models.Person
 
 
 object KudosController extends Controller {
   
   def list = Action {
-    val kudos = database.withSession {
-      (for (k <- Kudoses) yield k).list
+    val kudos: List[(Kudos, Person)] = database.withSession {
+      (for (k <- Kudoses; p <- k.target) yield (k, p)).list
     }
     
-    Ok(Json.toJson(kudos.map(Json.obj("kudoses", _))))
+    for ((k, p) <- kudos) {
+//      Json.toJson(o)
+    }
+    
+    Ok("dupa")
   }
   
   def findById(id: Int) = Action {
