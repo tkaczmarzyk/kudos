@@ -9,6 +9,7 @@ import play.api.libs.json.Format
 import play.api.libs.json.JsString
 import play.api.libs.json.JsNumber
 import models.Person
+import play.api.libs.json.JsString
 
 object JsonKudos {
   implicit object KudosFormat extends Writes[(Kudos, Person)] {
@@ -18,7 +19,8 @@ object JsonKudos {
               case (k: Kudos, p: Person) => Seq(
                 "id" -> JsNumber(k.id.get),
                 "name" -> JsString(k.name),
-                "target" -> JsString(p.name)
+                "text" -> JsString(k.text),
+                "target" -> Json.obj("name" -> p.name, "photoUrl" -> p.photoUrl)
               )
             }
         )
