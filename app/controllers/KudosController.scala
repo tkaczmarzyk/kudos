@@ -7,6 +7,7 @@ import play.api.mvc.Controller
 import models.{Kudos, Kudoses}
 import global.Global._
 import play.api.libs.json.Json
+import json.JsonKudos.KudosFormat
 
 
 object KudosController extends Controller {
@@ -16,6 +17,6 @@ object KudosController extends Controller {
       (for (b <- Kudoses) yield b).list
     }
     
-    Ok(kudos.toString)
+    Ok(Json.toJson(kudos.map(Json.obj("kudoses", _))))
   }
 }
