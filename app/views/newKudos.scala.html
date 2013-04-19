@@ -1,0 +1,9 @@
+@(myForm: Form[Kudos])
+
+@helper.form(action = routes.Application.submit) {
+    
+    @helper.inputText(myForm("username"))
+    
+    @helper.inputPassword(myForm("password"))
+    
+}

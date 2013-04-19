@@ -1,9 +1,10 @@
 package models
 
 import scala.slick.driver.H2Driver.simple._
+import java.sql.Date
 
 
-case class Kudos(id: Option[Int] = None, name: String, targetId: Int, text: String)
+case class Kudos(id: Option[Int] = None, name: String, targetId: Int, text: String, creationDate: Date)
 
 object Kudoses extends Table[Kudos]("kudos") {
   
@@ -17,6 +18,8 @@ object Kudoses extends Table[Kudos]("kudos") {
   
   def text = column[String]("text")
   
+  def creationDate = column[Date]("creation_date")
   
-  def * = id.? ~ name ~ targetId ~ text <>(Kudos, Kudos.unapply _)
+  
+  def * = id.? ~ name ~ targetId ~ text ~ creationDate <>(Kudos, Kudos.unapply _)
 }

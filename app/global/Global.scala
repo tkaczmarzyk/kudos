@@ -11,6 +11,7 @@ import models.Kudoses
 import models.Person
 import models.People
 import models.Kudos
+import java.sql.Date
 
  
 object Global extends GlobalSettings {
@@ -31,11 +32,11 @@ object Global extends GlobalSettings {
 
       var kudoses = 
         for (p <- participants)
-          yield Kudos(None, "uczestnictwo w hackhatonie #1", p.id.get, "za wybranie klawiatury zamiast piwa w piątek wieczorem!")
+          yield Kudos(None, "uczestnictwo w hackhatonie #1", p.id.get, "za wybranie klawiatury zamiast piwa w piątek wieczorem!", new Date(System.currentTimeMillis()))
 
       val pw = participants.find(_.name.startsWith("Piotr")).get
       
-      kudoses ::= Kudos(None, "za rozpykanie json mapperów ;)", pw.id.get, "po prostu usiadł i wykonał zadanie -- a kłód pod nogami było wiele :)") 
+      kudoses ::= Kudos(None, "za rozpykanie json mapperów ;)", pw.id.get, "po prostu usiadł i wykonał zadanie -- a kłód pod nogami było wiele :)", new Date(System.currentTimeMillis())) 
       
       Kudoses.insertAll(kudoses: _*)
     }
