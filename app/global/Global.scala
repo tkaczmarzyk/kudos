@@ -38,6 +38,10 @@ object Global extends GlobalSettings {
       
       kudoses ::= Kudos(None, "za rozpykanie json mapperów ;)", pw.id.get, "po prostu usiadł i wykonał zadanie -- a kłód pod nogami było wiele :)", new Date(System.currentTimeMillis())) 
       
+      kudoses :::= 
+        (for (p <- participants)
+          yield Kudos(None, "for kudos hackhaton completion ", p.id.get, "No comments required! It's just fuckin awesome!", new Date(System.currentTimeMillis())))
+      
       Kudoses.insertAll(kudoses: _*)
     }
   }
