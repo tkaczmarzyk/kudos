@@ -8,14 +8,19 @@ import play.api.libs.json.JsObject
 import play.api.libs.json.Format
 import play.api.libs.json.JsString
 import play.api.libs.json.JsNumber
+import models.Person
 
 object JsonKudos {
-  implicit object KudosFormat extends Writes[Kudos] {
+  implicit object KudosFormat extends Writes[(Kudos, Person)] {
 
-        def writes(k: Kudos) = JsObject(Seq(
-    		"id" -> JsNumber(k.id.get),
-            "name" -> JsString(k.name),
-            "targetId" -> JsNumber(k.targetId)
-        ))
+        def writes(tuple: (Kudos, Person)) = JsObject(
+            tuple match {
+              case (k: Kudos, p: Person) => Seq(
+                "id" -> JsNumber(k.id.get),
+                "name" -> JsString(k.name),
+                "target" -> JsString(p.name)
+              )
+            }
+        )
   }
 }
