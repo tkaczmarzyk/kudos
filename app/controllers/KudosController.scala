@@ -32,4 +32,9 @@ object KudosController extends Controller {
       case None => NotFound("no such element")
     }
   }
+  
+//  def createKudos = Action { request =>
+//  	val kudos = Json.fromJson(request.body.asJson.get).get
+//  	Kudoses.insert(kudos)
+//  }
 }
