@@ -27,7 +27,7 @@
 				<label class="control-label" for="forWhom">For whom</label>
 				<div class="controls">
 					<select ng-controller="PeopleCtrl" id="forWhom" name="targetId" class="ng-scope" placeholder="For whom">
-						<!-- ngRepeat: person in people --><option ng-repeat="person in people" value="1" class="ng-scope ng-binding">Tomasz Kaczmarzyk</option><option ng-repeat="person in people" value="2" class="ng-scope ng-binding">Michał Jankowski</option><option ng-repeat="person in people" value="3" class="ng-scope ng-binding">Piotr Wyczółkowski</option><option ng-repeat="person in people" value="4" class="ng-scope ng-binding">Błażej Karmelita</option>
+						<option ng-repeat="person in people" value="{{person.id}}" class="ng-scope ng-binding">{{person.name}}</option>
 					</select>
 				</div>
 			</div>
