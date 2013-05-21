@@ -75,18 +75,7 @@
 					</div>
 				</div>
 				<div class="row-fluid carousel-indicators">
-					<div class="span1 active"><img src="http://cohesiva.com/images/people_thumbs/tomekk_alt.jpg" alt="" class="img-circle"></div>
-					<div class="span1"><img src="http://cohesiva.com/images/people_thumbs/michal_alt.jpg" alt="" class="img-circle"></div>
-					<div class="span1"><img src="http://cohesiva.com/images/people_thumbs/blazej_alt.jpg" alt="" class="img-circle"></div>
-					<div class="span1"><img src="http://cohesiva.com/images/people_thumbs/piotrekw_alt.jpg" alt="" class="img-circle"></div>
-					<div class="span1"><img src="http://cohesiva.com/images/people_thumbs/michal_alt.jpg" alt="" class="img-circle"></div>
-					<div class="span1"><img src="http://cohesiva.com/images/people_thumbs/blazej_alt.jpg" alt="" class="img-circle"></div>
-					<div class="span1"><img src="http://cohesiva.com/images/people_thumbs/piotrekw_alt.jpg" alt="" class="img-circle"></div>
-					<div class="span1"><img src="http://cohesiva.com/images/people_thumbs/michal_alt.jpg" alt="" class="img-circle"></div>
-					<div class="span1"><img src="http://cohesiva.com/images/people_thumbs/blazej_alt.jpg" alt="" class="img-circle"></div>
-					<div class="span1"><img src="http://cohesiva.com/images/people_thumbs/piotrekw_alt.jpg" alt="" class="img-circle"></div>
-					<div class="span1"><img src="http://cohesiva.com/images/people_thumbs/tomekk_alt.jpg" alt="" class="img-circle"></div>
-					<div class="span1"><img src="http://cohesiva.com/images/people_thumbs/tomekk_alt.jpg" alt="" class="img-circle"></div>
+					<div class="span1" ng-repeat="kudos in kudoses"><img src="{{kudos.target.photoUrl}}" alt="" class="img-circle"></div>
 				</div>
 			</div>
 			<a class="left carousel-control" href="#carousel" data-slide="prev">&lsaquo;</a>
