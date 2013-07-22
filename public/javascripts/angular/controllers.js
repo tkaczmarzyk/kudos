@@ -4,11 +4,16 @@ angular.module('kudos',['ui.bootstrap']);
 
 /* Controllers */
 
-function KudosListCtrl($scope, $http) {
+function KudosListCtrl($scope, $http, $timeout) {
 	$scope.myInterval = 5000;
+  $scope.onTimeout = function(){
   	$http.get('/kudos').success(function(data) {
+      data[0].active = true;
     	$scope.kudoses = data;
+      $timeout($scope.onTimeout,600000);
   	});
+  };
+  $timeout($scope.onTimeout,0);
 }
 
 function PeopleCtrl($scope, $http) {
