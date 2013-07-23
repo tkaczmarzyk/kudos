@@ -24,6 +24,6 @@ public class People extends Controller {
 		Person person = Json.fromJson(request().body().asJson(), Person.class);
 		person.save();
 		
-		return redirect(routes.People.listAll());
+		return ok();
 	}
 }

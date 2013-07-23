@@ -11,6 +11,7 @@ GET		/kudos/:id					controllers.Kudos.find(id: Int)
 
 
 GET		/people						controllers.People.listAll
+POST	/people						controllers.People.add
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

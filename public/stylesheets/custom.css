@@ -115,6 +115,23 @@ header h1 a {
     -moz-opacity: 1;
     -webkit-opacity: 1;
 }
+.new-right {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	margin: 5px;
+	padding: 3px 6px;
+	background-color: #B300B3;
+	cursor: pointer;
+	opacity: 0.5;
+    -moz-opacity: 0.5;
+    -webkit-opacity: 0.5;
+}
+.new-right:hover {
+	opacity: 1;
+    -moz-opacity: 1;
+    -webkit-opacity: 1;
+}
 .modal {
 	color: #000000;
 }

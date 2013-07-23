@@ -27,7 +27,7 @@
 				<div class="control-group">
 					<label class="control-label" for="forWhom">For whom</label>
 					<div class="controls">
-						<select ng-model="newKudos.target.id" ng-controller="PeopleCtrl" id="forWhom" name="targetId" class="ng-scope" placeholder="For whom">
+						<select ng-model="newKudos.target.id" id="forWhom" name="targetId" class="ng-scope" placeholder="For whom">
 							<option ng-repeat="person in people" value="{{person.id}}" class="ng-scope ng-binding">{{person.name}}</option>
 						</select>
 					</div>
@@ -40,12 +40,48 @@
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="submit" class="btn btn-primary">kudos it!</button>
+				<button type="submit" class="btn btn-primary">Kudos it!</button>
 			</div>
 	      </form>
 		</div>
 		<div class="new img-circle">
 			<em class="icon-fire" ng-click="open()" data-toggle="modal" data-target="#kudosModal"></em>
+		</div>
+	</div>
+	<div ng-controller="NewPersonCtrl">
+		<div id="personModal" class="modal hide fade" modal="shouldBeOpen" close="close()" options="opts">
+		  <form class="form-horizontal" ng-submit="addPerson()">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h3>New Person</h3>
+			</div>
+			<div class="modal-body">
+				<div class="control-group">
+					<label class="control-label" for="forWhat">Name</label>
+					<div class="controls">
+						<input ng-model="newPerson.name" type="text" id="name" name="name" placeholder="name">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="forWhat">Small Photo Url</label>
+					<div class="controls">
+						<input ng-model="newPerson.smallPhotoUrl" type="text" id="smallPhotoUrl" name="smallPhotoUrl" placeholder="smallPhotoUrl">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="description">Big Photo Url</label>
+					<div class="controls">
+						<input ng-model="newPerson.bigPhotoUrl" type="text" id="bigPhotoUrl" name="bigPhotoUrl" placeholder="bigPhotoUrl"></textarea>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="submit" class="btn btn-primary">Add New Person!</button>
+			</div>
+	      </form>
+		</div>
+		<div class="new-right img-circle">
+			<em class="icon-fire" ng-click="open()" data-toggle="modal" data-target="#personModal"></em>
 		</div>
 	</div>
     <div id="website-wrapper">

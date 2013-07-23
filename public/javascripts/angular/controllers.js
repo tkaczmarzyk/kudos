@@ -32,6 +32,29 @@ kudos.factory('KudosService',function($http,$timeout) {
 
 });
 
+kudos.factory('PeopleService',function($http) {
+  var PeopleService = {
+    people : [],
+    
+    retrievePeople : function() {
+      $http.get('/people').success(function(data) {
+        PeopleService.people.splice(0,PeopleService.people.length);
+        for(var i=0;i<data.length;i++){
+          PeopleService.people.push(data[i]);
+        }
+      });
+    },
+
+    addPerson : function(person) {
+      $http.post("/people",person).then(function(){
+        PeopleService.retrievePeople();
+      });
+    }
+  }
+  PeopleService.retrievePeople();
+  return PeopleService;
+});
+
 /* Controllers */
 
 function KudosListCtrl($scope, KudosService) {
@@ -40,13 +63,17 @@ function KudosListCtrl($scope, KudosService) {
   $scope.kudoses = KudosService.kudoses;
 }
 
-function PeopleCtrl($scope, $http) {
-  $http.get('/people').success(function(data) {
-    $scope.people = data;
-  });
-}
+/*function PeopleCtrl($scope, PeopleService) {
+  PeopleService.retrievePeople();
+  $scope.people = PeopleService.people;
+  console.log("People: "+PeopleService.people);
+}*/
 
-function NewKudosCtrl ($scope, KudosService) {
+function NewKudosCtrl ($scope, KudosService, PeopleService) {
+
+  PeopleService.retrievePeople();
+  $scope.people = PeopleService.people;
+  console.log("People: "+PeopleService.people);
 
   $scope.open = function () {
     $scope.shouldBeOpen = true;
@@ -59,6 +86,29 @@ function NewKudosCtrl ($scope, KudosService) {
 
   $scope.addKudos = function () {
     KudosService.addKudos($scope.newKudos);
+    $scope.close();
+  }
+
+  $scope.opts = {
+    backdropFade: true,
+    dialogFade:true
+  };
+
+};
+
+function NewPersonCtrl ($scope, PeopleService) {
+
+  $scope.open = function () {
+    $scope.shouldBeOpen = true;
+    $scope.newPerson = null;
+  };
+
+  $scope.close = function () {
+    $scope.shouldBeOpen = false;
+  };
+
+  $scope.addPerson = function () {
+    PeopleService.addPerson($scope.newPerson);
     $scope.close();
   }
 
