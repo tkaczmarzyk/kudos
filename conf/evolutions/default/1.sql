@@ -8,6 +8,7 @@ create table kudos (
   reason                    varchar(255),
   details                   varchar(255),
   date                      timestamp,
+  target_id                 bigint,
   constraint pk_kudos primary key (id))
 ;
 
@@ -19,30 +20,20 @@ create table person (
   constraint pk_person primary key (id))
 ;
 
-
-create table kudos_person (
-  kudos_id                       bigint not null,
-  person_id                      bigint not null,
-  constraint pk_kudos_person primary key (kudos_id, person_id))
-;
 create sequence kudos_seq;
 
 create sequence person_seq;
 
+alter table kudos add constraint fk_kudos_target_1 foreign key (target_id) references person (id) on delete restrict on update restrict;
+create index ix_kudos_target_1 on kudos (target_id);
 
 
-
-alter table kudos_person add constraint fk_kudos_person_kudos_01 foreign key (kudos_id) references kudos (id) on delete restrict on update restrict;
-
-alter table kudos_person add constraint fk_kudos_person_person_02 foreign key (person_id) references person (id) on delete restrict on update restrict;
 
 # --- !Downs
 
 SET REFERENTIAL_INTEGRITY FALSE;
 
 drop table if exists kudos;
-
-drop table if exists kudos_person;
 
 drop table if exists person;
 
