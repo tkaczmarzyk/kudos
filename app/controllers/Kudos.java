@@ -5,8 +5,6 @@ import java.util.List;
 
 import org.codehaus.jackson.JsonNode;
 
-import models.Person;
-
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.db.ebean.Model;
@@ -17,7 +15,7 @@ import static play.libs.Json.*;
 public class Kudos extends Controller {
 
 	public static Result list() {
-		int num = 10; // TODO get it from query string
+		int num = 12; // TODO get it from query string
 		
 		List<models.Kudos> recentKudos = models.Kudos.find.order("date desc").setMaxRows(num).findList();
 			
@@ -29,17 +27,12 @@ public class Kudos extends Controller {
 	
 		models.Kudos kudos = Json.fromJson(json, models.Kudos.class);
 		
-		Iterator<JsonNode> targetIds = json.path("targetIds").getElements();
-		while (targetIds.hasNext()) {
-			Person target = Person.find.byId(targetIds.next().asLong());
-			if (target != null) {
-				kudos.targets.add(target);
-			}
+		models.Person person = models.Person.find.byId(kudos.target.id);
+		if (person != null) {
+			kudos.target = person;
 		}
-		
 		kudos.save();
-		
-		return redirect(routes.Kudos.list());
+		return ok();
 	}
 	
 	public static Result find(Long id) {

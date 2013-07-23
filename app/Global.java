@@ -1,39 +1,35 @@
-//import com.google.inject.Guice;
-//import com.google.inject.Injector;
 import play.Application;
 import play.GlobalSettings;
 import play.libs.Akka;
 import scala.concurrent.duration.Duration;
-import models.Person;
+import models.*;
 import java.util.concurrent.TimeUnit;
 
 public class Global extends GlobalSettings {
+    
     private Application application;
-    //private Injector injector;
 
     @Override
     public void onStart(Application application) {
         this.application = application;
-        /*injector = Guice.createInjector(new PlayModule(application));
-        Akka.system().scheduler().schedule(Duration.create(1, TimeUnit.SECONDS), Duration.create(1, TimeUnit.MINUTES), new Runnable() {
-            @Override
-            public void run() {
-                injector.getInstance(FeedDao.class).indexTrendingTerms();
-            }
-        }, Akka.system().dispatcher());*/
-		Person p = new Person();
-		p.name = "Dummy";
-		p.save();
+        Kudos kudos = createKudos("First Kudos","for app creation",createDummyPerson());
+        kudos.save();
     }
 
-    /*@Override
-    public void onStop(Application application) {
-        this.application = null;
-        this.injector = null;
-    }*/
+    private Kudos createKudos(String reason, String details, Person person) {
+        Kudos k = new Kudos();
+        k.reason = reason;
+        k.details = details;
+        k.target = person;
+        return k;
+    }
 
-    /*@Override
-    public <A> A getControllerInstance(Class<A> aClass) throws Exception {
-        return injector.getInstance(aClass);
-    }*/
+    private Person createDummyPerson(){
+        Person p = new Person();
+        p.name = "Dummy";
+        p.smallPhotoUrl = "http://cohesiva.com/images/people_thumbs/tomekk_alt.jpg";
+        p.bigPhotoUrl = "http://cohesiva.com/images/people_thumbs/tomekk_alt.jpg";
+        p.save();
+        return p;
+    }
 }

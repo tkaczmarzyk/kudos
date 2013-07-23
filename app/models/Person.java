@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 
@@ -20,16 +20,11 @@ public class Person extends Model {
 	@Id
 	public Long id;
 	
-	@ManyToMany(mappedBy="targets")
-	@JsonIgnore
-	public List<Kudos> kudos = new ArrayList<Kudos>();
-	
 	public String name;
 	
 	public String smallPhotoUrl;
 	
 	public String bigPhotoUrl;
-	
 	
 	public static Finder<Long, Person> find = new Finder<Long, Person>(Long.class, Person.class);
 }

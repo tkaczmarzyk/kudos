@@ -7,7 +7,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
@@ -29,9 +29,8 @@ public class Kudos extends Model {
 	
 	public Date date = new Date();
 	
-	@ManyToMany(cascade=CascadeType.PERSIST)
-	public List<Person> targets = new ArrayList<Person>();
-	
+	@ManyToOne(cascade=CascadeType.PERSIST)
+	public Person target;
 	
 	public static Finder<Long, Kudos> find = new Finder<Long, Kudos>(Long.class, Kudos.class);
 }
