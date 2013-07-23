@@ -7,8 +7,11 @@ angular.module('kudos',['ui.bootstrap']);
 function KudosListCtrl($scope, $http, $timeout) {
 	$scope.myInterval = 5000;
   $scope.onTimeout = function(){
+    console.log("onTimeout");
   	$http.get('/kudos').success(function(data) {
-      data[0].active = true;
+      if(data.length>0){
+        data[0].active = true;
+      }
     	$scope.kudoses = data;
       $timeout($scope.onTimeout,600000);
   	});
@@ -22,19 +25,21 @@ function PeopleCtrl($scope, $http) {
   });
 }
 
-function ModalDemoCtrl ($scope, $http) {
-
-  $http.get('/people').success(function(data) {
-    $scope.people = data;
-  });
+function NewKudosCtrl ($scope, $http) {
 
   $scope.open = function () {
     $scope.shouldBeOpen = true;
+    $scope.newKudos = null;
   };
 
   $scope.close = function () {
     $scope.shouldBeOpen = false;
   };
+
+  $scope.addKudos = function () {
+    $http.post('/kudos',$scope.newKudos);
+    $scope.close();
+  }
 
   $scope.opts = {
     backdropFade: true,

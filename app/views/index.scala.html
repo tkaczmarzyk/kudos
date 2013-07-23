@@ -10,9 +10,9 @@
 	<link rel='stylesheet' id='fonts-css'  href='http://fonts.googleapis.com/css?family=Dosis%3A400%2C600&#038;subset=latin%2Clatin-ext&#038;ver=3.5.1' type='text/css' media='all' />
   </head>
   <body>
-  	<div ng-controller="ModalDemoCtrl">
+  	<div ng-controller="NewKudosCtrl">
 		<div id="kudosModal" class="modal hide fade" modal="shouldBeOpen" close="close()" options="opts">
-		  <form class="form-horizontal" action="@routes.Kudos.add" method="post">
+		  <form class="form-horizontal" ng-submit="addKudos()">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				<h3>New kudos</h3>
@@ -21,13 +21,13 @@
 				<div class="control-group">
 					<label class="control-label" for="forWhat">For what</label>
 					<div class="controls">
-						<input type="text" id="forWhat" name="forWhat" placeholder="For what">
+						<input ng-model="newKudos.reason" type="text" id="forWhat" name="forWhat" placeholder="For what">
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="forWhom">For whom</label>
 					<div class="controls">
-						<select ng-controller="PeopleCtrl" id="forWhom" name="targetId" class="ng-scope" placeholder="For whom">
+						<select ng-model="newKudos.target.id" ng-controller="PeopleCtrl" id="forWhom" name="targetId" class="ng-scope" placeholder="For whom">
 							<option ng-repeat="person in people" value="{{person.id}}" class="ng-scope ng-binding">{{person.name}}</option>
 						</select>
 					</div>
@@ -35,7 +35,7 @@
 				<div class="control-group">
 					<label class="control-label" for="description">Details</label>
 					<div class="controls">
-						<textarea id="description" name="description" placeholder="Details"></textarea>
+						<textarea ng-model="newKudos.details" id="description" name="description" placeholder="Details"></textarea>
 					</div>
 				</div>
 			</div>
@@ -58,11 +58,11 @@
 	    			<slide ng-repeat="kudos in kudoses" active="kudos.active" class="item">
 						<div class="row-fluid">
 							<div class="span8">
-								<h1>{{kudos.name}}</h1>
-								<p>{{kudos.text}}</p>
+								<h1>{{kudos.reason}}</h1>
+								<p>{{kudos.details}}</p>
 							</div>
 							<div class="span4 text-center">
-								<img ng-src="{{kudos.target.photoUrl}}" alt="" class="img-circle">
+								<img ng-src="{{kudos.target.bigPhotoUrl}}" alt="" class="img-circle">
 								<div>{{kudos.target.name}}</div>
 							</div>
 						</div>
@@ -70,7 +70,7 @@
 	  			</carousel>
 	  			<div class="row-fluid indicators">
 					<div class="span1" ng-repeat="kudos in kudoses" ng-click="kudos.active = true" ng-class="{'active': kudos.active,'inactive':!kudos.active}">
-		          		<img ng-src="{{kudos.target.photoUrl}}" alt="" class="img-circle" />
+		          		<img ng-src="{{kudos.target.smallPhotoUrl}}" alt="" class="img-circle" />
 		        	</div>
 				</div>
   			</div>
