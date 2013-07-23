@@ -5,16 +5,12 @@
 # Home page
 GET     /                           controllers.Application.index
 
-GET		/bars						controllers.BarController.list
-POST	/bars						controllers.BarController.newBar
-
-GET		/kudos						controllers.KudosController.list
-POST	/kudos						controllers.KudosController.submit
-GET		/kudos/new					controllers.KudosController.showForm
-GET		/kudos/:id					controllers.KudosController.findById(id: Int)
+GET		/kudos						controllers.Kudos.list
+POST	/kudos						controllers.Kudos.add
+GET		/kudos/:id					controllers.Kudos.find(id: Int)
 
 
-GET		/people						controllers.PeopleController.list
+GET		/people						controllers.People.listAll
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
