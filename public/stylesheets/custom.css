@@ -53,6 +53,8 @@ header h1 a {
 	width: 93%;
 	height: 60%;
 	padding: 80px;
+	padding-top: 30px;
+	padding-bottom: 30px;
 }
 #carousel .item p {
 	padding-top: 10px;
@@ -66,6 +68,9 @@ header h1 a {
 #carousel .item .span4 img {
 	width: 50%;
 	margin-bottom: 5px;
+}
+.carousel {
+	height: 80%;
 }
 .indicators {
 	margin: 10px 0 0 27px;
@@ -121,7 +126,7 @@ header h1 a {
 	right: 0;
 	margin: 5px;
 	padding: 3px 6px;
-	background-color: #B300B3;
+	background-color: #6377B3;
 	cursor: pointer;
 	opacity: 0.5;
     -moz-opacity: 0.5;
