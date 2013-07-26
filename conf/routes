@@ -5,7 +5,7 @@
 # Home page
 GET     /                           controllers.Application.index
 
-GET		/kudos						controllers.Kudos.list
+GET		/kudos						controllers.Kudos.list(max:java.lang.Integer ?=12)
 POST	/kudos						controllers.Kudos.add
 GET		/kudos/:id					controllers.Kudos.find(id: Long)
 PUT		/kudos/:id					controllers.Kudos.update(id: Long)

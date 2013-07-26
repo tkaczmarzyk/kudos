@@ -13,10 +13,8 @@ import play.mvc.Result;
 
 public class Kudos extends Controller {
 
-	public static Result list() {
-		int num = 12; // TODO get it from query string
-		
-		List<models.Kudos> recentKudos = models.Kudos.find.order("date desc").setMaxRows(num).findList();
+	public static Result list(java.lang.Integer max) {
+		List<models.Kudos> recentKudos = models.Kudos.find.order("date desc").setMaxRows(max).findList();
 			
 		return ok(toJson(recentKudos));
 	}
